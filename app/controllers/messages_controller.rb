@@ -1,5 +1,7 @@
 class MessagesController < ApplicationController
   before_action do
+    # TODO: should :conversation_id be inside message_params?
+    # What happens in there is no conversation_id?
       @conversation = Conversation.find(params[:conversation_id])
   end
 
@@ -9,6 +11,7 @@ class MessagesController < ApplicationController
       @show_more = true
       @messages = @messages[-5..-1]
     end
+    # TODO: should :m be inside message_params?
     if params[:m]
       @show_more = false
       @messages = @conversation.messages

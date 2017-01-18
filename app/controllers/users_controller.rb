@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
+      # TODO: should there be a check if the user is successfully made? validations are useless unless you can notify the users.
       login(@user)
       redirect_to @user
   end

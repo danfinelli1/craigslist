@@ -9,9 +9,11 @@
             <%= image_tag(@user.avatar.url, :class => 'profile-picture') %>
             <br><%= @user.first_name%>
             is attending:
+            <!-- TODO:  NO MORE DB CALLS IN YOUR VIEWS!!!-->
             <%@joins = Jointable.where(user_id:@user.id)%>
             <%@joins.each do |join| %>
             <br>
+            <!-- TODO:  NO MORE DB CALLS IN YOUR VIEWS!!!-->
             <%@attending = Event.find_by_id(join.event_id)%>
 
             Event:
@@ -49,7 +51,11 @@
                   <%= link_to("Edit", edit_event_path(event.id), class: 'btn btn-info btn-xs')%>
                   <%= link_to("Delete", event_path(event.id), :method => :delete, data: {confirm: "Are you sure you want to delete #{event.title}?"}, class: 'btn btn-danger btn-xs') %>
                   <%else%>
-                    <p>Created By: <%=User.find(event.user_id).first_name%> <%=User.find(event.user_id).last_name%></p>
+                    <p>Created By:
+                      <!-- TODO:  NO MORE DB CALLS IN YOUR VIEWS!!!-->
+ <%=User.find(event.user_id).first_name%>
+ <!-- TODO:  NO MORE DB CALLS IN YOUR VIEWS!!!-->
+ <%=User.find(event.user_id).last_name%></p>
                   <%end%>
                 </div>
 

@@ -46,7 +46,7 @@ class RentsController < ApplicationController
   end
 
   def contact
-
+    # TODO: Hi! I'm an empty route!
   end
 
   private
