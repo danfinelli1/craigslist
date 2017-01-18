@@ -4,6 +4,7 @@
   <% end %>
   <% @messages.each do |message| %>
     <% if message.body %>
+      <!-- TODO: NEVER make database calls in your views. This is a big no-no - do this in your controller -->
       <% user = User.find(message.user_id) %>
     <div><h5><strong><%= user.first_name %></strong>  <i><%= message.message_time %></i></h5></div>
     <div><%= message.body %></div>

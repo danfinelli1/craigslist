@@ -1,5 +1,7 @@
 class EventController < ApplicationController
     def index
+      # TODO: WHat happens when there is :category AND :price present?
+
       if params[:category]
         @events = Event.where(:category => params[:category])
       else
@@ -33,10 +35,11 @@ class EventController < ApplicationController
     end
 
     def show
+      # TODO: Use event_params
         @event = Event.find_by_id(params[:id])
         @creator=User.find_by_id(@event.user_id)
         @picture = Picture.where(event_id:@event.id)
-        
+
     end
 
     def edit
@@ -44,6 +47,7 @@ class EventController < ApplicationController
     end
 
     def update
+        # TODO: Use event_params
         updated_event = Event.find_by_id(params[:id])
         if updated_event.update(event_params)
             redirect_to user_path(current_user)
@@ -53,6 +57,7 @@ class EventController < ApplicationController
     end
 
     def destroy
+      # TODO: to keep event history (i.e. interesting data) consider adding a variable called active? that you simply switch to false to not display.  This way you can keep events, who attended them, etc. for marketing purposes
         deleted_event = Event.find_by_id(params[:id])
         Event.destroy(deleted_event)
         redirect_to user_path(current_user)

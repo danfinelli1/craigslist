@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
-
+  # TODO: please use a consistent coding convention (rockets vs. `to:`)
   post '/rate' => 'rater#create', :as => 'rate'
+
+  # TODO: what do these routes do?
   get 'messages/index'
 
   get 'messages/new'
@@ -59,9 +61,10 @@ Rails.application.routes.draw do
   post '/rents', to: 'rents#create', as: 'create_rent'
   delete '/rents/:id', to: 'rents#destroy'
 
+# TODO: why do you have a route that goes to rents#new with a different http method?
   post '/rents/new', to: 'rents#new'
 
-
+  # TODO: Please use consistent coding conventions (resources vs. written routes)
   #Mailbox Routes
   resources :conversations do
     resources :messages

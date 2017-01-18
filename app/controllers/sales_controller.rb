@@ -39,11 +39,13 @@ class SalesController < ApplicationController
   end
 
   def destroy
+    # TODO: Consider 'archiving' the sale instead of destroying it for tracking sales info.
     @sale = Sale.find_by_id(params[:id])
     Sale.destroy(@sale)
     redirect_to user_path(current_user)
   end
 
+  # TODO: It would be nice to have comments for these two methods to explain the funcitonality
   def purchase
     @sale = Sale.find_by_id(params[:id])
     @sale.update({buyer_id:current_user.id})
